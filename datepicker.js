@@ -14,7 +14,7 @@ function calculateDefaultStartDate() {
 
     // Format the date as "MM-DD-YYYY"
     const formattedDate = `${twoDaysAhead.getMonth() + 1}-${twoDaysAhead.getDate()}-${twoDaysAhead.getFullYear()}`;
-    console.log(formattedDate)
+    console.log('date',formattedDate)
     return formattedDate;
    
 }
