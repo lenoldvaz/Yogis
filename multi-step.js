@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
