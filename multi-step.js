@@ -1,6 +1,9 @@
  
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const submitbutton = document.getElementById(SubmitBtn)
+const form = document.getElementById('wf-form-plan-builder');
+const submitBtn = document.getElementById('SubmitBtn');
 
 
 // Add a change event listener to each radio button
@@ -104,13 +107,13 @@ checkboxes.forEach(checkbox => {
             switch (wizedValue) {
                 case 'input_cuisine_conti':
                 
-                console.log('salad-check',isSaladChecked)
+                //console.log('salad-check',isSaladChecked)
 
                 if(!isSaladChecked){
                     indianCheckBoxes.forEach(indianCheckBox => {
                         indianCheckBox.classList.toggle('is-included');
                         const includedBars = indianCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                        console.log(includedBars)
+                       // console.log(includedBars)
                         includedBars.forEach(bar => {
                             bar.classList.toggle('hide');
                         });
@@ -129,7 +132,7 @@ checkboxes.forEach(checkbox => {
                         indianCheckBoxes.forEach(indianCheckBox => {
                             indianCheckBox.classList.toggle('is-included');
                             const includedBars = indianCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                            console.log(includedBars)
+                            //console.log(includedBars)
                             includedBars.forEach(bar => {
                                 bar.classList.toggle('hide');
                             });
@@ -137,7 +140,7 @@ checkboxes.forEach(checkbox => {
                         contiCheckBoxes.forEach(contiCheckBox => {
                             contiCheckBox.classList.toggle('is-included');
                             const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                            console.log(includedBars)
+                            //console.log(includedBars)
                             includedBars.forEach(bar => {
                                 bar.classList.toggle('hide');
                             });
@@ -148,7 +151,7 @@ checkboxes.forEach(checkbox => {
                         contiCheckBoxes.forEach(contiCheckBox => {
                             contiCheckBox.classList.add('is-included');
                             const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                            console.log(includedBars)
+                            //console.log(includedBars)
                             includedBars.forEach(bar => {
                                 bar.classList.toggle('hide');
                             });
@@ -159,7 +162,7 @@ checkboxes.forEach(checkbox => {
                         contiCheckBoxes.forEach(contiCheckBox => {
                             contiCheckBox.classList.remove('is-included');
                             const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                            console.log(includedBars)
+                           // console.log(includedBars)
                             includedBars.forEach(bar => {
                                 bar.classList.toggle('hide');
                             });
@@ -182,14 +185,14 @@ checkboxes.forEach(checkbox => {
     var container = document.getElementById(containerId);
     var checkboxes = container.querySelectorAll('input[type="checkbox"]');
     var button = document.querySelector(buttonSelector); // Get the button
-    console.log('container', checkboxes)
+    //console.log('container', checkboxes)
    
 
 
         // Function to update button state based on checkbox count
         function updateButtonState() {
             var checkedCount = container.querySelectorAll('input[type="checkbox"]:checked').length;
-            console.log('checkedCount',containerId+checkedCount)
+           // console.log('checkedCount',containerId+checkedCount)
 
                     if (checkedCount < minCheckCount) {
                         button.style.pointerEvents = "none"; // Disable pointer events
@@ -212,13 +215,52 @@ checkboxes.forEach(checkbox => {
         });
       });
     }
-      
+
+
+    //Disable submit button when required events are not filled 
+    
+   
+
+    // Function to check if all required inputs are filled
+    const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2'];
+    
+    function checkInputs() {
+        for (const inputId of inputIdsToCheck) {
+            const input = document.getElementById(inputId);
+            if (!input.value.trim()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Add an input event listener to the form
+    form.addEventListener('input', function () {
+        
+        if (checkInputs()) {
+           // console.log('inputs filled')
+           submitBtn.classList.remove('disabled')
+            submitBtn.style.pointerEvents = 'auto';
+                submitBtn.style.opacity = '1';
+        } else {
+           // console.log('inputs not filled')
+            submitBtn.style.pointerEvents = 'none';
+            submitBtn.style.opacity = '0.4';
+        }
+    });
+
+       
+            
 
 
   document.addEventListener('DOMContentLoaded', function() {
     setupCheckboxLogic('cuisine-div', 1, '.is-createcart'); // Set the minimum check count as needed for day-1
     setupCheckboxLogic('days-div', 4, '.is-createcart'); // Set the minimum check count as needed for day-2
   });
+
+
+
+
 
 
 

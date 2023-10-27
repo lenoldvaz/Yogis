@@ -13,7 +13,7 @@ function calculateDefaultStartDate() {
     }
 
     // Format the date as "MM-DD-YYYY"
-    const formattedDate = `${twoDaysAhead.getMonth() + 1}-${twoDaysAhead.getDate()}-${twoDaysAhead.getFullYear()}`;
+    const formattedDate = `${twoDaysAhead.getDate()}-${twoDaysAhead.getMonth() + 1}-${twoDaysAhead.getFullYear()}`;
     console.log('date',formattedDate)
     return formattedDate;
    
@@ -25,10 +25,23 @@ $(document).ready(function () {
     const default_startDate = calculateDefaultStartDate();
     
     $('[data-toggle="datepicker"]').datepicker({
-        format: 'mm-dd-yyyy',
+        format: 'dd-mm-yyyy',
         date: default_startDate,
         startDate: default_startDate
     });
+
+
+     // Attach an event listener to update the input field on date change
+$('[data-toggle="datepicker"]').on('pick.datepicker', function (e) {
+   
+    console.log('date changed');
+    // Get the selected date and update the input field
+    const selectedDate = e.date;
+    $('[data-toggle="datepicker"]').datepicker('setDate', selectedDate);
+    console.log('selectedDate', selectedDate);
+    $('#selectedDateInput').val(selectedDate);
+
+});
 
     // Available date placeholders:
     // Year: yyyy
