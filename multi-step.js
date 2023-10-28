@@ -1,11 +1,11 @@
  
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-const submitbutton = document.getElementById(SubmitBtn)
+const submitbutton = document.getElementById('SubmitBtn')
 const form = document.getElementById('wf-form-plan-builder');
 const submitBtn = document.getElementById('SubmitBtn');
 
-
+//Set up styling for radio buttons. If one radio button is selected, it should be set to is-active
 // Add a change event listener to each radio button
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', () => {
@@ -68,6 +68,9 @@ radioButtons.forEach(radioButton => {
 
 
 
+
+
+//CHECKBOXES
 // Add a click event listener to each checkbox
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', () => {
@@ -84,103 +87,107 @@ checkboxes.forEach(checkbox => {
     });
 });
 
-// Add a click event listener to each checkbox
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('click', () => {
-        // Find the parent div with class 'form_multistep_selector'
-        const parentDiv = checkbox.closest('.form_multistep_selector');
+// // Add a click event listener to each checkbox
+// checkboxes.forEach(checkbox => {
+//     checkbox.addEventListener('click', () => {
+//         // Find the parent div with class 'form_multistep_selector'
+//         const parentDiv = checkbox.closest('.form_multistep_selector');
         
-        if (parentDiv) {
-            // Toggle the 'is-active' class on the selected checkbox's parent
-            parentDiv.classList.toggle('is-active');
+//         if (parentDiv) {
+//             // Toggle the 'is-active' class on the selected checkbox's parent
+//             parentDiv.classList.toggle('is-active');
 
-            // Extract the 'wized' attribute value
-            const wizedValue = parentDiv.getAttribute('wized');
+//             // Extract the 'wized' attribute value
+//             const wizedValue = parentDiv.getAttribute('wized');
 
-            // Find all other checkboxes with the same class
-            const indianCheckBoxes = document.querySelectorAll('.is-cuisine-indian');
-            const contiCheckBoxes = document.querySelectorAll('.is-cuisine-conti');
+//             // Find all other checkboxes with the same class
+//             const indianCheckBoxes = document.querySelectorAll('.is-cuisine-indian');
+//             const contiCheckBoxes = document.querySelectorAll('.is-cuisine-conti');
 
-            const isSaladChecked = document.querySelector('.is-cuisine-salad.is-active');
-            const isContiChecked = document.querySelector('.is-cuisine-conti.is-active');
-            // Use a switch statement based on the 'wized' value
-            switch (wizedValue) {
-                case 'input_cuisine_conti':
+//             const isSaladChecked = document.querySelector('.is-cuisine-salad.is-active');
+//             const isContiChecked = document.querySelector('.is-cuisine-conti.is-active');
+//             // Use a switch statement based on the 'wized' value
+//             switch (wizedValue) {
+//                 case 'input_cuisine_conti':
                 
-                //console.log('salad-check',isSaladChecked)
+//                 //console.log('salad-check',isSaladChecked)
 
-                if(!isSaladChecked){
-                    indianCheckBoxes.forEach(indianCheckBox => {
-                        indianCheckBox.classList.toggle('is-included');
-                        const includedBars = indianCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                       // console.log(includedBars)
-                        includedBars.forEach(bar => {
-                            bar.classList.toggle('hide');
-                        });
-                    });
-                } 
+//                 if(!isSaladChecked){
+//                     indianCheckBoxes.forEach(indianCheckBox => {
+//                         indianCheckBox.classList.toggle('is-included');
+//                         const includedBars = indianCheckBox.querySelectorAll('.multistep_selector-includedbar');
+//                        // console.log(includedBars)
+//                         includedBars.forEach(bar => {
+//                             bar.classList.toggle('hide');
+//                         });
+//                     });
+//                 } 
 
-                    break;
-
-
+//                     break;
 
 
 
-                case 'input_cuisine_salad':
+
+
+//                 case 'input_cuisine_salad':
                     
-                    if(!isContiChecked) {
-                        indianCheckBoxes.forEach(indianCheckBox => {
-                            indianCheckBox.classList.toggle('is-included');
-                            const includedBars = indianCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                            //console.log(includedBars)
-                            includedBars.forEach(bar => {
-                                bar.classList.toggle('hide');
-                            });
-                        });
-                        contiCheckBoxes.forEach(contiCheckBox => {
-                            contiCheckBox.classList.toggle('is-included');
-                            const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                            //console.log(includedBars)
-                            includedBars.forEach(bar => {
-                                bar.classList.toggle('hide');
-                            });
-                        });
+//                     if(!isContiChecked) {
+//                         indianCheckBoxes.forEach(indianCheckBox => {
+//                             indianCheckBox.classList.toggle('is-included');
+//                             const includedBars = indianCheckBox.querySelectorAll('.multistep_selector-includedbar');
+//                             //console.log(includedBars)
+//                             includedBars.forEach(bar => {
+//                                 bar.classList.toggle('hide');
+//                             });
+//                         });
+//                         contiCheckBoxes.forEach(contiCheckBox => {
+//                             contiCheckBox.classList.toggle('is-included');
+//                             const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
+//                             //console.log(includedBars)
+//                             includedBars.forEach(bar => {
+//                                 bar.classList.toggle('hide');
+//                             });
+//                         });
 
-                    } else if(isSaladChecked) {
+//                     } else if(isSaladChecked) {
                         
-                        contiCheckBoxes.forEach(contiCheckBox => {
-                            contiCheckBox.classList.add('is-included');
-                            const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                            //console.log(includedBars)
-                            includedBars.forEach(bar => {
-                                bar.classList.toggle('hide');
-                            });
+//                         contiCheckBoxes.forEach(contiCheckBox => {
+//                             contiCheckBox.classList.add('is-included');
+//                             const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
+//                             //console.log(includedBars)
+//                             includedBars.forEach(bar => {
+//                                 bar.classList.toggle('hide');
+//                             });
                             
                             
-                        });
-                    } else {
-                        contiCheckBoxes.forEach(contiCheckBox => {
-                            contiCheckBox.classList.remove('is-included');
-                            const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
-                           // console.log(includedBars)
-                            includedBars.forEach(bar => {
-                                bar.classList.toggle('hide');
-                            });
+//                         });
+//                     } else {
+//                         contiCheckBoxes.forEach(contiCheckBox => {
+//                             contiCheckBox.classList.remove('is-included');
+//                             const includedBars = contiCheckBox.querySelectorAll('.multistep_selector-includedbar');
+//                            // console.log(includedBars)
+//                             includedBars.forEach(bar => {
+//                                 bar.classList.toggle('hide');
+//                             });
                             
                             
-                        });
-                    }
+//                         });
+//                     }
                     
-                    break;
-                // Add more cases as needed
-            }
-        }
-    });
-});
+//                     break;
+//                 // Add more cases as needed
+//             }
+//         }
+//     });
+// });
 
 
  
 
+
+
+
+//DISABLE button if checkboxes aren't checked 
   function setupCheckboxLogic(containerId, minCheckCount, buttonSelector) {
     var container = document.getElementById(containerId);
     var checkboxes = container.querySelectorAll('input[type="checkbox"]');
@@ -217,10 +224,12 @@ checkboxes.forEach(checkbox => {
     }
 
 
-    //Disable submit button when required events are not filled 
-    
-   
+      
 
+
+
+
+    //Disable submit button when required events are not filled on final page
     // Function to check if all required inputs are filled
     const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2'];
     
@@ -285,7 +294,7 @@ checkboxes.forEach(checkbox => {
     
 
   document.addEventListener('DOMContentLoaded', function() {
-    setupCheckboxLogic('cuisine-div', 1, '.is-createcart'); // Set the minimum check count as needed for day-1
+  //  setupCheckboxLogic('cuisine-div', 1, '.is-createcart'); // Set the minimum check count as needed for day-1
     setupCheckboxLogic('days-div', 4, '.is-createcart'); // Set the minimum check count as needed for day-2
   });
 
