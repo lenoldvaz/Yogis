@@ -249,9 +249,40 @@ checkboxes.forEach(checkbox => {
         }
     });
 
-       
-            
 
+    //Create a event listener for the submit button and on click change the text
+       
+    const submitButton = document.getElementById('SubmitBtn');
+    console.log(submitButton)
+    const buttonText = "Creating your Tiffin";
+    let animationInterval;
+    
+    function startAnimation() {
+      let dots = 0;
+      animationInterval = setInterval(() => {
+        dots = (dots % 4) + 1; // Cycle through 1, 2, 3, 4 (for 3 dots)
+        const dotsString = ".".repeat(dots);
+        submitButton.textContent = `${buttonText}${dotsString}`;
+      }, 500); // Change the dot every 500ms (half a second)
+    }
+    
+    function stopAnimation() {
+      clearInterval(animationInterval);
+    }
+    
+    submitButton.addEventListener("click", () => {
+        console.log('submit clicked')
+        submitButton.classList.add('is-processing');
+        submitButton.setAttribute("disabled", true); // Disable the button to prevent multiple clicks
+      startAnimation();
+      // Simulate an asynchronous task, for example, an API call
+      setTimeout(() => {
+        // After the task is complete, stop the animation and re-enable the button
+        stopAnimation();
+        submitButton.removeAttribute("disabled");
+      }, 3000); // Simulate a 3-second task duration (adjust as needed)
+    });
+    
 
   document.addEventListener('DOMContentLoaded', function() {
     setupCheckboxLogic('cuisine-div', 1, '.is-createcart'); // Set the minimum check count as needed for day-1
