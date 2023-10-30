@@ -259,6 +259,44 @@ checkboxes.forEach(checkbox => {
     });
 
 
+
+// Hide Indian if veg is selected
+function addHideClassToIndianDiv() {
+  // Get the radio group elements
+  const radioGroup = document.querySelectorAll('input[type="radio"][wized="radio_nv"]');
+  console.log(radioGroup);
+  
+  // Get the div with class 'is-cuisine-indian'
+  const indianDiv = document.querySelector(".is-cuisine-indian");
+
+  // Define the plan cards
+  const planBasic = document.querySelector(".is-basic");
+  const planStd = document.querySelector(".tiffin_explainer_container.is-conti");
+
+  // Add change event listener to the radio group
+  radioGroup.forEach((radioButton) => {
+    radioButton.addEventListener("change", () => {
+      console.log('n/nv changed');
+      // Check if the 'vegetarian' option is selected
+      if (radioButton.value === "Vegetarian") {
+        // Add the 'hide' class to the 'is-cuisine-indian' div
+        indianDiv.classList.add("hide");
+        planBasic.classList.add('hide');
+        planStd.style.display = 'flex'; // Show planStd
+      } else {
+        // Remove the 'hide' class and hide planStd if any other option is selected
+        indianDiv.classList.remove("hide");
+        planBasic.classList.remove('hide');
+        planStd.style.display = 'none'; // Hide planStd
+      }
+    });
+  });
+}
+
+// Call the function to set up the behavior
+addHideClassToIndianDiv();
+
+
     //Create a event listener for the submit button and on click change the text
        
     const submitButton = document.getElementById('SubmitBtn');
