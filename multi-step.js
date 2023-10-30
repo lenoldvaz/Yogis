@@ -262,6 +262,7 @@ checkboxes.forEach(checkbox => {
 
 // Hide Indian if veg is selected
 function addHideClassToIndianDiv() {
+  console.log('testing')
   // Get the radio group elements
   const radioGroup = document.querySelectorAll('input[type="radio"][wized="radio_nv"]');
   console.log(radioGroup);
@@ -278,7 +279,7 @@ function addHideClassToIndianDiv() {
     radioButton.addEventListener("change", () => {
       console.log('n/nv changed');
       // Check if the 'vegetarian' option is selected
-      if (radioButton.value === "Vegetarian") {
+      if (radioButton.value === "Non-vegetarian") {
         // Add the 'hide' class to the 'is-cuisine-indian' div
         indianDiv.classList.add("hide");
         planBasic.classList.add('hide');
