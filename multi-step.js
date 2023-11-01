@@ -231,28 +231,43 @@ checkboxes.forEach(checkbox => {
 
     //Disable submit button when required events are not filled on final page
     // Function to check if all required inputs are filled
-    const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2'];
-    
+    // Function to check if all required inputs are filled
+    const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2', 'Password-3'];
+
     function checkInputs() {
         for (const inputId of inputIdsToCheck) {
             const input = document.getElementById(inputId);
-            if (!input.value.trim()) {
+
+            // Check if the input is in a visible div
+            if (isInputVisible(inputId) && !input.value.trim()) {
                 return false;
             }
         }
         return true;
     }
 
+    // Function to check if an input is in a visible div
+    function isInputVisible(inputId) {
+        // You need to implement the logic to determine if the corresponding div is visible
+        // You can use CSS classes, styles, or other methods to check visibility
+        // For example, if you're using a class to toggle visibility, you can do something like this:
+
+        
+        const div = document.getElementById(inputId);
+
+        // Check if the div is visible (you can adjust this condition based on your implementation)
+        return div && div.style.display !== 'none';
+    }
+
     // Add an input event listener to the form
     form.addEventListener('input', function () {
-        
         if (checkInputs()) {
-           // console.log('inputs filled')
-           submitBtn.classList.remove('disabled')
+            // console.log('inputs filled')
+            submitBtn.classList.remove('disabled');
             submitBtn.style.pointerEvents = 'auto';
-                submitBtn.style.opacity = '1';
+            submitBtn.style.opacity = '1';
         } else {
-           // console.log('inputs not filled')
+            // console.log('inputs not filled')
             submitBtn.style.pointerEvents = 'none';
             submitBtn.style.opacity = '0.4';
         }
