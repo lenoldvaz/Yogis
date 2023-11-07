@@ -232,7 +232,7 @@ checkboxes.forEach(checkbox => {
     //Disable submit button when required events are not filled on final page
     // Function to check if all required inputs are filled
     // Function to check if all required inputs are filled
-    const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2', 'Password-3'];
+    const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2'];
 
     function checkInputs() {
         for (const inputId of inputIdsToCheck) {
