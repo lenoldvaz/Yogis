@@ -229,49 +229,55 @@ checkboxes.forEach(checkbox => {
 
 
 
-    //Disable submit button when required events are not filled on final page
     // Function to check if all required inputs are filled
-    // Function to check if all required inputs are filled
-    const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2'];
+const inputIdsToCheck = ['First-name', 'Last-name-2', 'Street-address-2', 'City-2', 'Pincode', 'Province-2', 'phone-2'];
 
-    function checkInputs() {
-        for (const inputId of inputIdsToCheck) {
-            const input = document.getElementById(inputId);
-
-            // Check if the input is in a visible div
-            if (isInputVisible(inputId) && !input.value.trim()) {
-                return false;
-            }
+// Function to dynamically add 'Password-3' if certain conditions are met
+function updateInputIdsToCheck() {
+    const registerPassContainer = document.querySelector('[wized="register_pass_container"]');
+    if (registerPassContainer && registerPassContainer.style.display === 'block') {
+        // Check if 'Password-3' is not already in the array to avoid duplicates
+        if (!inputIdsToCheck.includes('Password-3')) {
+            inputIdsToCheck.push('Password-3');
         }
-        return true;
     }
+}
 
-    // Function to check if an input is in a visible div
-    function isInputVisible(inputId) {
-        // You need to implement the logic to determine if the corresponding div is visible
-        // You can use CSS classes, styles, or other methods to check visibility
-        // For example, if you're using a class to toggle visibility, you can do something like this:
+function checkInputs() {
+    updateInputIdsToCheck(); // Call the function to update input IDs if needed
 
-        
-        const div = document.getElementById(inputId);
+    for (const inputId of inputIdsToCheck) {
+        const input = document.getElementById(inputId);
 
-        // Check if the div is visible (you can adjust this condition based on your implementation)
-        return div && div.style.display !== 'none';
-    }
-
-    // Add an input event listener to the form
-    form.addEventListener('input', function () {
-        if (checkInputs()) {
-            // console.log('inputs filled')
-            submitBtn.classList.remove('disabled');
-            submitBtn.style.pointerEvents = 'auto';
-            submitBtn.style.opacity = '1';
-        } else {
-            // console.log('inputs not filled')
-            submitBtn.style.pointerEvents = 'none';
-            submitBtn.style.opacity = '0.4';
+        // Check if the input is in a visible div
+        if (isInputVisible(inputId) && !input.value.trim()) {
+            return false;
         }
-    });
+    }
+    return true;
+}
+
+// Function to check if an input is in a visible div
+function isInputVisible(inputId) {
+    // Existing implementation to check the visibility of the input's div
+    const div = document.getElementById(inputId);
+    // Check if the div is visible (you can adjust this condition based on your implementation)
+    return div && div.style.display !== 'none';
+}
+
+// Add an input event listener to the form
+form.addEventListener('input', function () {
+    if (checkInputs()) {
+        // Enable submit button
+        submitBtn.classList.remove('disabled');
+        submitBtn.style.pointerEvents = 'auto';
+        submitBtn.style.opacity = '1';
+    } else {
+        // Disable submit button
+        submitBtn.style.pointerEvents = 'none';
+        submitBtn.style.opacity = '0.4';
+    }
+});
 
 
 
