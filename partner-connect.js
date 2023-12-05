@@ -12,7 +12,11 @@ function checkInputs() {
         if (!isInputVisible(inputId)) {
             return false;
         }
-       
+
+        // Check if the input value is not empty
+        if (!input.value.trim()) {
+            return false;
+        }
     }
     return true;
 }
